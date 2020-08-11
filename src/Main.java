@@ -8,14 +8,19 @@ public class Main {
     public static void main(String[] args) {
         while(!fileCheck().isDirectory());
 
+
+        String settedExtension = setExtension();
         String extension = "";
         for(String file: folder.list()){
             extension = file.substring(file.lastIndexOf("."));
             extension = extension.replace(".", "");
 
             System.out.println(file);
-
+            if(extension == settedExtension){
+                fileList.add(folder);
+            }
         }
+
     }
     static File fileCheck(){
         System.out.println("フォルダーのPATHをペーストしてください");
@@ -24,7 +29,7 @@ public class Main {
         folder = new File(path);
         return folder;
     }
-    static String[][] setExtension(){
+    static String setExtension(){
         System.out.println("以下のリストから拡張子を指定してください");
         System.out.println("ts" +
                 "flv");

@@ -10,11 +10,14 @@ public class Main {
     private static ArrayList<String> selectedFileList = new ArrayList<>();
     private static File folder;
     public static void main(String[] args) throws IOException {
+        System.out.println("指定するフォルダの中にフォルダがあると、エラーが発生するので事前に移動させてください");
+
         while(!fileCheck().isDirectory());
         setFfmpeg();
 
         String settedExtension = setExtension();
         String extension = "";
+
         for(String file: folder.list()){
             extension = file.substring(file.lastIndexOf("."));
             extension = extension.replace(".", "");
@@ -22,9 +25,12 @@ public class Main {
             System.out.print(extension);
             System.out.println(file);
 
+
             if(extension.equals(settedExtension)){
                 fileList.add(file);
             }
+
+
         }
 
         System.out.println(fileList.size());
@@ -40,10 +46,17 @@ public class Main {
         for(String a : selectedFileList){
             Runtime runtime = Runtime.getRuntime();
             String command = command1 + a + " " + command3 + " " + a + ".mp4";
-            Process process = runtime.exec(command);
+            //Process process = runtime.exec(command);
+			System.out.println(command);
         }
         System.out.println("成功しました");
     }
+
+    private static boolean getDirectory(String file) {
+        File file1 = new File(file);
+        return file1.isDirectory();
+    }
+
     static File fileCheck(){
         System.out.println("フォルダーのPATHをペーストしてください");
         Scanner scanner = new Scanner(System.in);

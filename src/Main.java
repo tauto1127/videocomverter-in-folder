@@ -46,8 +46,7 @@ public class Main {
         for(String a : selectedFileList){
             Runtime runtime = Runtime.getRuntime();
             String command = command1 + a + " " + command3 + " " + a + ".mp4";
-            //Process process = runtime.exec(command);
-			System.out.println(command);
+            Process process = runtime.exec(command);
         }
         System.out.println("成功しました");
     }
